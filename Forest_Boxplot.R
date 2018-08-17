@@ -49,8 +49,7 @@ F + scale_y_continuous(breaks=c(1967, seq(1965,2020, by=5), 2017)) + scale_x_con
 G <- ggplot(A, aes(x=A$건물유형_G, y=A$사용현원)) +
   geom_boxplot(aes(x=as.numeric(A$건물유형_G) + 0.2, group=A$건물유형_G), width=0.25) +
   geom_dotplot(aes(x=as.numeric(A$건물유형_G) - 0.2, group=A$건물유형_G), binaxis="y", binwidth=0.2, stackdir="center") 
-G + scale_y_continuous(breaks=c(seq(0,25, by=3))) + scale_x_continuous(breaks=c(1,2), labels=c("단독주거", "집합주거")) + xlab("건물유형") + ylab("사용현원") 
+G + scale_y_continuous(breaks=c(seq(0,25, by=3))) + scale_x_continuous(breaks=c(1,2), labels=c("단독주거", "집합주거")) + xlab("건물유형") + ylab("사용현원")
 
-
-
-
+#
+library(knitr)
