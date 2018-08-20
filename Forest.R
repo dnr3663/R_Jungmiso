@@ -1,52 +1,59 @@
-setwd("C:/Users/jungmiso01/Desktop/ì‚°ë¦¼ì²­_R_Plot") 
+setwd("C:/Users/jungmiso01/Desktop/»ê¸²Ã»_R_Plot")  
 
 library(ggplot2)
 library(plyr)
+
 A <- read.csv("Work_456TEMP_0817.csv")
 str(A)
 
 ############################1-Building Type Name Change############################
 
-BT <- A$ê±´ë¬¼ìœ í˜•_G
-BT1 <- revalue(BT, c('1-ë…ë¦½ì£¼ê±°' = "ë‹¨ë…ì£¼ê±°", '2-ì§‘í•©ì£¼ê±°' ="ì§‘í•©ì£¼ê±°"))
-A$ê±´ë¬¼ìœ í˜•_G <- BT1
-unique(A$ê±´ë¬¼ìœ í˜•_G)
+BT <- A$°Ç¹°À¯Çü_G
+
+BT1 <- revalue(BT, c('1-µ¶¸³ÁÖ°Å' = "´Üµ¶ÁÖ°Å", '2-ÁýÇÕÁÖ°Å' ="ÁýÇÕÁÖ°Å"))
+
+A$°Ç¹°À¯Çü_G <- BT1
+
+unique(A$°Ç¹°À¯Çü_G)
 
 ##################################2-safety rating##################################
 
-B <- ggplot(A, aes(x=A$ê±´ë¬¼ìœ í˜•_G, y=A$ì•ˆì „ë“±ê¸‰)) + geom_dotplot(binaxis="y", binwidth=.03, stackdir="center")
-B + scale_y_discrete(limits=c("A", "B", "C", "D", "E", "NULL")) + xlab("ê±´ë¬¼ìœ í˜•") + ylab("ì•ˆì „ë“±ê¸‰") 
+B <- ggplot(A, aes(x=A$°Ç¹°À¯Çü_G, y=A$¾ÈÀüµî±Þ)) + geom_dotplot(binaxis="y", binwidth=.03, stackdir="center")
+
+B + scale_y_discrete(limits=c("A", "B", "C", "D", "E", "NULL")) + xlab("°Ç¹°À¯Çü") + ylab("¾ÈÀüµî±Þ") 
 
 ##################################3-Detailed department############################
 
-C <- ggplot(A, aes(x=A$ê±´ë¬¼ìœ í˜•_G, y=A$ì„¸ë¶€ê¸°ê´€ëª…)) + geom_dotplot(binaxis="y", binwidth=.15, stackdir="center")
-C + scale_y_discrete(limits=c("êµ­ë¦½ì‚°ë¦¼ê³¼í•™ì›", "ë™ë¶€ì§€ë°©ì‚°ë¦¼ì²­", "êµ­ë¦½ì‚°ë¦¼í’ˆì¢…ê´€ë¦¬ì„¼í„°", "ë¶ë¶€ì§€ë°©ì‚°ë¦¼ì²­", "ë‚¨ë¶€ì§€ë°©ì‚°ë¦¼ì²­"
-                              ,"ì„œë¶€ì§€ë°©ì‚°ë¦¼ì²­", "ì‚°ë¦¼í•­ê³µë³¸ë¶€", "ì¤‘ë¶€ì§€ë°©ì‚°ë¦¼ì²­", "êµ­ë¦½ìžì—°íœ´ì–‘ë¦¼ê´€ë¦¬ì†Œ", "ì‚°ë¦¼ì²­ ê´€ì‚¬")) + xlab("ê±´ë¬¼ìœ í˜•") + ylab("ì„¸ë¶€ê¸°ê´€ëª…")
+C <- ggplot(A, aes(x=A$°Ç¹°À¯Çü_G, y=A$¼¼ºÎ±â°ü¸í)) + geom_dotplot(binaxis="y", binwidth=.15, stackdir="center")
+
+C + scale_y_discrete(limits=c("±¹¸³»ê¸²°úÇÐ¿ø", "µ¿ºÎÁö¹æ»ê¸²Ã»", "±¹¸³»ê¸²Ç°Á¾°ü¸®¼¾ÅÍ", "ºÏºÎÁö¹æ»ê¸²Ã»", "³²ºÎÁö¹æ»ê¸²Ã»"
+                              ,"¼­ºÎÁö¹æ»ê¸²Ã»", "»ê¸²Ç×°øº»ºÎ", "ÁßºÎÁö¹æ»ê¸²Ã»", "±¹¸³ÀÚ¿¬ÈÞ¾ç¸²°ü¸®¼Ò", "»ê¸²Ã» °ü»ç")) + xlab("°Ç¹°À¯Çü") + ylab("¼¼ºÎ±â°ü¸í")
 
 ##################################3-Building Structure#############################
 
-D <- ggplot(A, aes(x=A$ê±´ë¬¼ìœ í˜•_G, y=A$ê±´ë¬¼êµ¬ì¡°_G)) + geom_dotplot(binaxis="y", binwidth=.07, stackdir="center")
-D + scale_y_discrete(limits=c("ë¸”ëŸ­ì¡°", "ë²½ëŒì¡°", "ëª©êµ¬ì¡°", "RCì¡°", "ì² ê³¨(ê²½ëŸ‰+ì¼ë°˜)", "ëª¨ë¦„")) + xlab("ê±´ë¬¼ìœ í˜•") + ylab("ê±´ë¬¼êµ¬ì¡°") 
+D <- ggplot(A, aes(x=A$°Ç¹°À¯Çü_G, y=A$°Ç¹°±¸Á¶_G)) + geom_dotplot(binaxis="y", binwidth=.07, stackdir="center")
+D + scale_y_discrete(limits=c("ºí·°Á¶", "º®µ¹Á¶", "¸ñ±¸Á¶", "RCÁ¶", "Ã¶°ñ(°æ·®+ÀÏ¹Ý)", "¸ð¸§")) + xlab("°Ç¹°À¯Çü") + ylab("°Ç¹°±¸Á¶") 
 
 ##################################4-Count By City#############################
 
-E <- ggplot(A, aes(x=A$ê±´ë¬¼ìœ í˜•_G, y=A$ê´‘ì—­ì‹œë„)) + geom_dotplot(binaxis="y", binwidth=.1, stackdir="center")
-E + scale_y_discrete(limits=c("ê²½ê¸°ë„", "ê°•ì›ë„", "ëŒ€ì „ê´‘ì—­ì‹œ", "ê²½ìƒë¶ë„", "ê²½ìƒë‚¨ë„", "ì¶©ì²­ë¶ë„", "ì¶©ì²­ë‚¨ë„", "ì „ë¼ë¶ë„", "ì „ë¼ë‚¨ë„")) +
-xlab("ê±´ë¬¼ìœ í˜•") + ylab("ê´‘ì—­ì‹œÂ·ë„") 
+E <- ggplot(A, aes(x=A$°Ç¹°À¯Çü_G, y=A$±¤¿ª½Ãµµ)) + geom_dotplot(binaxis="y", binwidth=.1, stackdir="center")
+E + scale_y_discrete(limits=c("°æ±âµµ", "°­¿øµµ", "´ëÀü±¤¿ª½Ã", "°æ»óºÏµµ", "°æ»ó³²µµ", "ÃæÃ»ºÏµµ", "ÃæÃ»³²µµ", "Àü¶óºÏµµ", "Àü¶ó³²µµ")) +
+  xlab("°Ç¹°À¯Çü") + ylab("±¤¿ª½Ã¡¤µµ") 
 
 ##################################5-Age of Building#############################
 
-F <- ggplot(A, aes(x=A$ê±´ë¬¼ìœ í˜•_G, y=A$ì¤€ê³µì—°ë„)) +
-geom_boxplot(aes(x=as.numeric(A$ê±´ë¬¼ìœ í˜•_G) + 0.2, group=A$ê±´ë¬¼ìœ í˜•_G), width=0.25) +
-geom_dotplot(aes(x=as.numeric(A$ê±´ë¬¼ìœ í˜•_G) - 0.2, group=A$ê±´ë¬¼ìœ í˜•_G), binaxis="y", binwidth=0.8, stackdir="center") 
-F + scale_y_continuous(breaks=c(1967, seq(1965,2020, by=5), 2017)) + scale_x_continuous(breaks=c(1,2), labels=c("ë‹¨ë…ì£¼ê±°", "ì§‘í•©ì£¼ê±°")) + 
-  xlab("ê±´ë¬¼ìœ í˜•") + ylab("ì¤€ê³µì—°ë„") 
+F <- ggplot(A, aes(x=A$°Ç¹°À¯Çü_G, y=A$ÁØ°ø¿¬µµ)) +
+  geom_boxplot(aes(x=as.numeric(A$°Ç¹°À¯Çü_G) + 0.2, group=A$°Ç¹°À¯Çü_G), width=0.25) +
+  geom_dotplot(aes(x=as.numeric(A$°Ç¹°À¯Çü_G) - 0.2, group=A$°Ç¹°À¯Çü_G), binaxis="y", binwidth=0.8, stackdir="center") 
+F + scale_y_continuous(breaks=c(1967, seq(1965,2020, by=5), 2017)) + scale_x_continuous(breaks=c(1,2), labels=c("´Üµ¶ÁÖ°Å", "ÁýÇÕÁÖ°Å")) + 
+  xlab("°Ç¹°À¯Çü") + ylab("ÁØ°ø¿¬µµ") 
+
 
 ##################################5-the number of people#############################
 
-G <- ggplot(A, aes(x=A$ê±´ë¬¼ìœ í˜•_G, y=A$ì‚¬ìš©í˜„ì›)) +
-geom_boxplot(aes(x=as.numeric(A$ê±´ë¬¼ìœ í˜•_G) + 0.2, group=A$ê±´ë¬¼ìœ í˜•_G), width=0.25) +
-geom_dotplot(aes(x=as.numeric(A$ê±´ë¬¼ìœ í˜•_G) - 0.2, group=A$ê±´ë¬¼ìœ í˜•_G), binaxis="y", binwidth=0.2, stackdir="center") 
-G + scale_y_continuous(breaks=c(seq(0,25, by=3))) + scale_x_continuous(breaks=c(1,2), labels=c("ë‹¨ë…ì£¼ê±°", "ì§‘í•©ì£¼ê±°")) + xlab("ê±´ë¬¼ìœ í˜•") + ylab("ì‚¬ìš©í˜„ì›")
+G <- ggplot(A, aes(x=A$°Ç¹°À¯Çü_G, y=A$»ç¿ëÇö¿ø)) +
+  geom_boxplot(aes(x=as.numeric(A$°Ç¹°À¯Çü_G) + 0.2, group=A$°Ç¹°À¯Çü_G), width=0.25) +
+  geom_dotplot(aes(x=as.numeric(A$°Ç¹°À¯Çü_G) - 0.2, group=A$°Ç¹°À¯Çü_G), binaxis="y", binwidth=0.2, stackdir="center") 
+G + scale_y_continuous(breaks=c(seq(0,25, by=3))) + scale_x_continuous(breaks=c(1,2), labels=c("´Üµ¶ÁÖ°Å", "ÁýÇÕÁÖ°Å")) + xlab("°Ç¹°À¯Çü") + ylab("»ç¿ëÇö¿ø")
 
 library(knitr)
