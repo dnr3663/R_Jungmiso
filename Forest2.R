@@ -1,6 +1,6 @@
 setwd("C:/Users/jungmiso01/Desktop/�긲û_R_Plot")  
 
-library(ggplot2)
+library(ggplot2) 
 library(plyr)
 
 A <- read.csv("Work_456TEMP_0817.csv")
